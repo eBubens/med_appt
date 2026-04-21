@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">  
+    <link rel="stylesheet" href="./LandingPage.css">
+    <link rel="stylesheet" href="./form.css">
+</head>
+<body>
+    <navbar class="nav_bar">
+        <div class="company_logo">
+            StayHealthy <i class="fa fa-heartbeat" aria-hidden="true"></i>
+        </div>
+        <div class="nav_links">
+            <a href="#">Home</a>
+            <a href="#">Appointments</a>
+            <a href="#">Health Blog</a>
+            <a href="#">Reviews</a>
+
+            <div class="nav_login">
+                <a href="#">Sing Up</a>
+                <a href="#">Login</a>
+            </div>
+        </div>
+    </navbar>
+    <section class="hero-section">
+        <div>
+          <div data-aos="fade-up" class="flex-hero">
+              
+              <h1>
+                Your Health<br/>
+                <span class="text-gradient">
+                  
+                  Our Responsibility
+                </span>
+              </h1>
+                <div class="blob-cont">
+                    <div class="blue blob"></div>
+                </div>
+                <div class="blob-cont">
+                    <div class="blue1 blob"></div>
+                </div>
+              <h4>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque at quae ducimus. Suscipit omnis quibusdam non cum rem voluptatem! 
+              </h4>
+              <a href="#services">
+                <button class="button">Get Started</button>
+              </a>
+                
+          </div>
+  
+        </div>
+      </section>
+
+
+<section class="signup-container">
+    <div class="signup-box">
+        <h1>Sign Up</h1>
+        <p>Already a member? <a href="#" class="login-link">Login</a></p>
+
+        <form>
+            <!-- Rolle -->
+            <div class="form-group">
+                <label for="role">Role</label>
+                <select id="role" name="role" required>
+                    <option value="" disabled selected>Select a role</option>
+                    <option value="doctor">Doctor</option>
+                    <option value="patient">Patient</option>
+                    <option value="admin">Administrator</option>
+                </select>
+            </div>
+
+            <!-- Name -->
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+
+            <!-- Passwort -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" placeholder="Enter password" required>
+                    <i class="fa fa-eye-slash" id="togglePassword"></i>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="button-group">
+                <button type="submit" class="btn-submit">Submit</button>
+                <button type="reset" class="btn-reset">Reset</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section class="login-container">
+    <div class="signup-box">
+        <h1>Login</h1>
+        <p>A you a new member? <a href="#" class="login-link">Sing Up here.</a></p>
+
+        <form>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+
+            <!-- Passwort -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" placeholder="Enter password" required>
+                    <i class="fa fa-eye-slash" id="togglePassword"></i>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="button-group">
+                <button type="submit" class="btn-submit">Login</button>
+                <button type="reset" class="btn-reset">Reset</button>
+            </div>
+            <div>
+                <p><a href="#" class="login-link">Forgot a Password?</a></p>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section class="home-section">
+    <h1>
+        Find a doctor at your own ease
+    </h1>
+</section>
+
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+
+    togglePassword.addEventListener('click', function () {
+        // Typ umschalten
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        
+        // Icon umschalten
+        this.classList.toggle('fa-eye-slash');
+    });
+</script>
+
+</body>
+</html>
