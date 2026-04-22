@@ -91,3 +91,8 @@ button {
 .btn-reset { background-color: #b673f8; }
 
 button:hover { opacity: 0.9; }
+
+.err {
+    font-size: 14px;
+    color: red;
+}

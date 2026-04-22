@@ -1,63 +1,24 @@
+// Following code has been commented with appropriate comments for your reference.
 import React, { useState } from 'react';
-import './Sign_Up.css';
-
+import './Sign_Up.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { API_URL } from '../../../config';
 
+// Function component for Sign Up form
 const Sign_Up = () => {
-    const [showPassword, setShowPassword] = useState(false);
+    // State variables using useState hook
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [password, setPassword] = useState('');
+    const [showerr, setShowerr] = useState(''); // State to show error messages
+    const navigate = useNavigate(); // Navigation hook from react-router
 
+    const [showPassword, setShowPassword] = useState(false);
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
 
-    const [formData, setFormData] = useState({
-        role: '',
-        name: '',
-        phone: '',
-        email: '',
-        password: ''
-    });
-
-    const [errors, setErrors] = useState({});
-
-    const validate = () => {
-        let newErrors = {};
-    
-        // E-Mail Validierung (Regex)
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!formData.email) {
-            newErrors.email = "Email is required";
-        } else if (!emailRegex.test(formData.email)) {
-            newErrors.email = "Invalid email format";
-        }
-    
-        // Passwort Validierung
-        if (formData.password.length < 6) {
-            newErrors.password = "Password must be at least 6 characters long";
-        }
-    
-        // Name Validierung (nur für Sign_Up)
-        if (!formData.name) {
-            newErrors.name = "Name is required";
-        }
-    
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0; // true, wenn keine Fehler
-    };
-    
-    const handleSubmit = (e) => {
-        e.preventDefault(); // Verhindert Neuladen der Seite
-        if (validate()) {
-            console.log("Form data is valid:", formData);
-            // Hier folgt der API-Aufruf zum Backend
-        } else {
-            console.log("Validation failed");
-        }
-    };
-
-    
-    /*******************/
     // Function to handle form submission
     const register = async (e) => {
         e.preventDefault(); // Prevent default form submission
@@ -99,18 +60,17 @@ const Sign_Up = () => {
         }
     };
 
-    /*******************/
-
-
+    // JSX to render the Sign Up form
     return (
+        
         <section className="signup-container">
             <div className="signup-box">
                 <h1>Sign Up</h1>
                 <p>Already a member? <a href="#" className="login-link">Login</a></p>
 
-                <form>
-                     {/* Rolle */}
-                     <div className="form-group">
+                <form method="POST" onSubmit={register}>
+                    {/* Rolle */}
+                    <div className="form-group">
                         <label htmlFor="role">Role</label>
                         <select id="role" name="role" required defaultValue="">
                             <option value="" disabled>Select a role</option>
@@ -130,7 +90,7 @@ const Sign_Up = () => {
                             required 
                         />
                     </div> 
-                    
+
                     {/* Phone */}
                     <div className="form-group">
                         <label htmlFor="phone">Phone</label>
@@ -147,14 +107,19 @@ const Sign_Up = () => {
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
                         <input 
+                            value={email} 
+                            onChange={(e) => setEmail(e.target.value)} 
                             type="email" 
+                            name="email" 
                             id="email" 
+                            className="form-control" 
                             placeholder="Enter your email" 
-                            required 
+                            aria-describedby="helpId" 
                         />
+                        {showerr && <div className="err" style={{ color: 'red' }}>{showerr}</div>}
+                        <div className="err">Test!</div>
                     </div>
-
-                    {/* Passwort */}
+                    
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
                         <div className="password-wrapper">
@@ -182,10 +147,13 @@ const Sign_Up = () => {
                     <div className="forgot-password">
                         <p><a href="#" className="login-link">Forgot Password?</a></p>
                     </div>
+
                 </form>
+                
             </div>
         </section>
+        /* Note: Sign up role is not stored in the database. Additional logic can be implemented for this based on your React code. */
     );
-};
+}
 
-export default Sign_Up;
+export default Sign_Up; // Export the Sign_Up component for use in other components
