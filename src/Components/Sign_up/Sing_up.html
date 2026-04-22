@@ -1,0 +1,46 @@
+<section class="signup-container">
+    <div class="signup-box">
+        <h1>Sign Up</h1>
+        <p>Already a member? <a href="#" class="login-link">Login</a></p>
+
+        <form>
+            <!-- Rolle -->
+            <div class="form-group">
+                <label for="role">Role</label>
+                <select id="role" name="role" required>
+                    <option value="" disabled selected>Select a role</option>
+                    <option value="doctor">Doctor</option>
+                    <option value="patient">Patient</option>
+                    <option value="admin">Administrator</option>
+                </select>
+            </div>
+
+            <!-- Name -->
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+
+            <!-- Passwort -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" placeholder="Enter password" required>
+                    <i class="fa fa-eye-slash" id="togglePassword"></i>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="button-group">
+                <button type="submit" class="btn-submit">Submit</button>
+                <button type="reset" class="btn-reset">Reset</button>
+            </div>
+        </form>
+    </div>
+</section>
