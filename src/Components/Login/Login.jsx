@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../Sign_up/Sign_up.css';
+import '../Sign_Up/Sign_Up.css';
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
