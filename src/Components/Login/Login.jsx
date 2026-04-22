@@ -8,43 +8,6 @@ const Login = () => {
         setShowPassword(!showPassword);
     };
 
-    const [formData, setFormData] = useState({
-        email: '',
-        password: ''
-    });
-
-    const [errors, setErrors] = useState({});
-
-    const validate = () => {
-        let newErrors = {};
-    
-        // E-Mail Validierung (Regex)
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!formData.email) {
-            newErrors.email = "Email is required";
-        } else if (!emailRegex.test(formData.email)) {
-            newErrors.email = "Invalid email format";
-        }
-    
-        // Passwort Validierung
-        if (!formData.password) {
-            newErrors.password = "Password is required";
-        }
-    
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0; // true, wenn keine Fehler
-    };
-    
-    const handleSubmit = (e) => {
-        e.preventDefault(); // Verhindert Neuladen der Seite
-        if (validate()) {
-            console.log("Form data is valid:", formData);
-            // Hier folgt der API-Aufruf zum Backend
-        } else {
-            console.log("Validation failed");
-        }
-    };
-
     return (
         <section className="login-container">
             <div className="signup-box">

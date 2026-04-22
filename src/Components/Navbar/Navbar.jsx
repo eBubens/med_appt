@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // WICHTIG: Link importieren
 import './Navbar.css';
 
 const Navbar = () => {
@@ -9,14 +10,15 @@ const Navbar = () => {
       </div>
       
       <div className="nav_links">
-        <a href="#home">Home</a>
-        <a href="#appointments">Appointments</a>
-        <a href="#blog">Health Blog</a>
-        <a href="#reviews">Reviews</a>
+        <Link to="/">Home</Link>
+        <Link to="/appointments">Appointments</Link>
+        <Link to="/blog">Health Blog</Link>
+        <Link to="/reviews">Reviews</Link>
 
         <div className="nav_login">
-          <a href="#signup" className="btn-signup">Sign Up</a>
-          <a href="#login" className="btn-login">Login</a>
+          {/* Hier die Pfade anpassen */}
+          <Link to="/signup" className="btn-signup">Sign Up</Link>
+          <Link to="/login" className="btn-login">Login</Link>
         </div>
       </div>
     </nav>
@@ -24,3 +26,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

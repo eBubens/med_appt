@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './Sign_up.css';
 
 const Sign_up = () => {
-    // State für die Passwort-Sichtbarkeit
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
@@ -53,7 +52,6 @@ const Sign_up = () => {
             console.log("Validation failed");
         }
     };
-    
 
     return (
         <section className="signup-container">
@@ -61,9 +59,9 @@ const Sign_up = () => {
                 <h1>Sign Up</h1>
                 <p>Already a member? <a href="#" className="login-link">Login</a></p>
 
-                <form onSubmit={handleSubmit} onReset={handleReset}>
-                    {/* Rolle */}
-                    <div className="form-group">
+                <form>
+                     {/* Rolle */}
+                     <div className="form-group">
                         <label htmlFor="role">Role</label>
                         <select id="role" name="role" required defaultValue="">
                             <option value="" disabled>Select a role</option>
@@ -77,26 +75,23 @@ const Sign_up = () => {
                     <div className="form-group">
                         <label htmlFor="name">Name</label>
                         <input 
-                                type="te
-                            xt" id="na
-                            me" placeholder="Enter your na
-                            me" requi
-                        red />
-                    </div>
-
+                            type="text" 
+                            id="name" 
+                            placeholder="Enter your name" 
+                            required 
+                        />
+                    </div> 
+                    
                     {/* Phone */}
                     <div className="form-group">
-                        <label htmlFor="phone">Phone Number</label>
+                        <label htmlFor="phone">Phone</label>
                         <input
                             type="tel"
                             id="phone"
                             name="phone"
-                            placeholder="Enter 10-digit phone number"
-                            value={formData.phone}
-                            onChange={handlePhoneChange} // Spezial-Funktion für die 10-Ziffern-Regel
+                            placeholder="Enter your phone number"
                             required
                         />
-                        {errors.phone && <span className="error-text" style={{color: 'red'}}>{errors.phone}</span>}
                     </div>
 
                     {/* Email */}
@@ -107,8 +102,6 @@ const Sign_up = () => {
                             id="email" 
                             placeholder="Enter your email" 
                             required 
-                            value={formData.email}
-                            onChange={(e) => setFormData({...formData, email: e.target.value})}
                         />
                     </div>
 
@@ -133,8 +126,12 @@ const Sign_up = () => {
 
                     {/* Buttons */}
                     <div className="button-group">
-                        <button type="submit" className="btn-submit">Submit</button>
+                        <button type="submit" className="btn-submit">Login</button>
                         <button type="reset" className="btn-reset">Reset</button>
+                    </div>
+
+                    <div className="forgot-password">
+                        <p><a href="#" className="login-link">Forgot Password?</a></p>
                     </div>
                 </form>
             </div>
