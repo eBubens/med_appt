@@ -21,8 +21,8 @@ const FindDoctorSearch = () => {
     return (
         <div className='finddoctor'>
             <center>
-                <h1>Find a doctor and Consult instantly</h1>
-                <div>               <i style={{color:'#b673f8',fontSize:'5rem', marginBottom:'1rem'}} className="fa fa-user-md"></i>
+                <h1>Find a doctor at your own ease</h1>
+                <div>               <i style={{color:'#2190FF',fontSize:'5rem', marginBottom:'1rem'}} className="fa fa-user-md"></i>
 </div>                <div className="home-search-container"  style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
                     <div className="doctor-search-box">
                     {/* <p>Perform a search to see the results.</p> */}
