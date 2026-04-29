@@ -16,6 +16,8 @@ import FindDoctorSearch from './Components/FindDoctorSearch/FindDoctorSearch';
 
 import Notification from './Components/Notification/Notification';
 
+import ReviewForm from './Components/ReviewForm/ReviewForm';
+
 // Function component for the main App
 function App() {
 
@@ -34,6 +36,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/instant-consultation" element={<InstantConsultation />} />
                     <Route path="/appointments" element={<FindDoctorSearch />} />
+                    <Route path="/reviews" element={<ReviewForm />} />
                 </Routes>
 
             </Notification>
