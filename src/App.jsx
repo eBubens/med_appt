@@ -14,6 +14,8 @@ import InstantConsultation from './Components/InstantConsultationBooking/Instant
 
 import FindDoctorSearch from './Components/FindDoctorSearch/FindDoctorSearch';
 
+import Notification from './Components/Notification/Notification';
+
 // Function component for the main App
 function App() {
 
@@ -22,18 +24,19 @@ function App() {
     <div className="App">
         {/* Set up BrowserRouter for routing */}
         <BrowserRouter>
-          {/* Display the Navbar component */}
-          <Navbar/>
+            <Notification>
 
-          {/* Set up the Routes for different pages */}
-          <Routes>
-            {/* Define individual Route components for different pages */}
-            <Route path="/" element={<Landing_Page />} />
-            <Route path="/signup" element={<Sign_Up />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/instant-consultation" element={<InstantConsultation />} />
-            <Route path="/appointments" element={<FindDoctorSearch />} />
-          </Routes>
+                {/* Set up the Routes for different pages */}
+                <Routes>
+                    {/* Define individual Route components for different pages */}
+                    <Route path="/" element={<Landing_Page />} />
+                    <Route path="/signup" element={<Sign_Up />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/instant-consultation" element={<InstantConsultation />} />
+                    <Route path="/appointments" element={<FindDoctorSearch />} />
+                </Routes>
+
+            </Notification>
         </BrowserRouter>
     </div>
   );
