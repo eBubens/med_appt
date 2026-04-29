@@ -117,7 +117,6 @@ const Sign_Up = () => {
                             aria-describedby="helpId" 
                         />
                         {showerr && <div className="err" style={{ color: 'red' }}>{showerr}</div>}
-                        <div className="err">Test!</div>
                     </div>
                     
                     <div className="form-group">
