@@ -11,6 +11,8 @@ const Sign_Up = () => {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
+    const [role, setRole] = useState('');
+
     const [showerr, setShowerr] = useState(''); // State to show error messages
     const navigate = useNavigate(); // Navigation hook from react-router
 
@@ -24,59 +26,62 @@ const Sign_Up = () => {
         e.preventDefault(); // Prevent default form submission
 
         // API Call to register user
-        const response = await fetch(`${API_URL}/api/auth/register`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                name: name,
-                email: email,
-                password: password,
-                phone: phone,
-            }),
-        });
+        const response = await fetch(`${API_URL}api/auth/register`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            name: name,
+            email: email,
+            password: password,
+            phone: phone,
+            role: role, // 2. Rolle wird jetzt mitgeschickt!
+        }),
+    });
 
         const json = await response.json(); // Parse the response JSON
 
         if (json.authtoken) {
-            // Store user data in session storage
             sessionStorage.setItem("auth-token", json.authtoken);
             sessionStorage.setItem("name", name);
             sessionStorage.setItem("phone", phone);
             sessionStorage.setItem("email", email);
-
-            // Redirect user to home page
+            sessionStorage.setItem("role", role);
             navigate("/");
-            window.location.reload(); // Refresh the page
+            window.location.reload();
         } else {
-            if (json.errors) {
-                for (const error of json.errors) {
-                    setShowerr(error.msg); // Show error messages
-                }
-            } else {
-                setShowerr(json.error);
+            // 3. Fehler-Handling reparieren (verhindert Error #31)
+            if (json.errors && Array.isArray(json.errors)) {
+                // Wir nehmen die Nachricht des ersten Fehlers als Text
+                setShowerr(json.errors[0].msg || "Validierungsfehler");
+            } else if (json.error) {
+                setShowerr(typeof json.error === 'string' ? json.error : "Ein Fehler ist aufgetreten");
             }
         }
     };
 
     // JSX to render the Sign Up form
     return (
-        
         <section className="signup-container">
             <div className="signup-box">
                 <h1>Sign Up</h1>
-                <p>Already a member? <a href="#" className="login-link">Login</a></p>
+                <p>Already a member? <Link to="/login" className="login-link">Login</Link></p>
 
                 <form method="POST" onSubmit={register}>
                     {/* Rolle */}
                     <div className="form-group">
                         <label htmlFor="role">Role</label>
-                        <select id="role" name="role" required defaultValue="">
+                        <select 
+                            id="role" 
+                            name="role" 
+                            required 
+                            value={role} 
+                            onChange={(e) => setRole(e.target.value)} // 4. OnChange hinzufügen!
+                        >
                             <option value="" disabled>Select a role</option>
                             <option value="doctor">Doctor</option>
                             <option value="patient">Patient</option>
-                            <option value="admin">Administrator</option>
                         </select>
                     </div>
 
@@ -84,6 +89,8 @@ const Sign_Up = () => {
                     <div className="form-group">
                         <label htmlFor="name">Name</label>
                         <input 
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                             type="text" 
                             id="name" 
                             placeholder="Enter your name" 
@@ -95,6 +102,8 @@ const Sign_Up = () => {
                     <div className="form-group">
                         <label htmlFor="phone">Phone</label>
                         <input
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
                             type="tel"
                             id="phone"
                             name="phone"
@@ -114,15 +123,18 @@ const Sign_Up = () => {
                             id="email" 
                             className="form-control" 
                             placeholder="Enter your email" 
-                            aria-describedby="helpId" 
+                            required
                         />
-                        {showerr && <div className="err" style={{ color: 'red' }}>{showerr}</div>}
+                        {/* Error message displayed here if exists */}
+                        {showerr && <div className="err" style={{ color: 'red', fontSize: '12px', marginTop: '5px' }}>{showerr}</div>}
                     </div>
                     
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
                         <div className="password-wrapper">
                             <input 
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 type={showPassword ? "text" : "password"} 
                                 id="password" 
                                 placeholder="Enter password" 
@@ -139,8 +151,8 @@ const Sign_Up = () => {
 
                     {/* Buttons */}
                     <div className="button-group">
-                        <button type="submit" className="btn-submit">Login</button>
-                        <button type="reset" className="btn-reset">Reset</button>
+                        <button type="submit" className="btn-submit">Sign Up</button>
+                        <button type="reset" className="btn-reset" onClick={() => {setName(''); setEmail(''); setPhone(''); setPassword(''); setShowerr('');}}>Reset</button>
                     </div>
 
                     <div className="forgot-password">
@@ -148,11 +160,9 @@ const Sign_Up = () => {
                     </div>
 
                 </form>
-                
             </div>
         </section>
-        /* Note: Sign up role is not stored in the database. Additional logic can be implemented for this based on your React code. */
     );
 }
 
-export default Sign_Up; // Export the Sign_Up component for use in other components
+export default Sign_Up;
